@@ -1,4 +1,7 @@
 % currently 2D
+% pi/2 is going to do weird things.
+% the problem lies in comparing vWater against vDis. Pretty sure the
+% integration is working properly.
 
 function Waterline = waterline(mBoat,theta,X)
 %% waterline will return a plottable vector of position values for the waterline by
@@ -22,34 +25,34 @@ w = 0; % variable to hold correct value of d
 while d > bottomboat
     % Find intercepts
     %%
-    step = -1/100;
-    vDis = 1;
-    check = vDis;
-    theta = pi/4;
-    d = .5;
-    funYZ = @(y) abs(y).^1 - 1;
-    funWater = @(y) tan(theta)*y+d;
+%     step = -1/100;
+%     vDis = 1;
+%     check = vDis;
+%     theta = pi+.001;
+%     d = -.1;
+%     funYZ = @(y) abs(y).^1 - 1;
+%     funWater = @(y) tan(theta)*y+d;
     hullfun = @(a) funYZ(a) - funWater(a); % waterline and boat hull
     y0fun = @(b) funWater(b); % waterline and y axis
     y1 = fzero(hullfun,-1);
     y2 = fzero(y0fun,-1);
-    y3 = fzero(hullfun,0);
+    y3 = fzero(hullfun,1);
     
     % Find vWater for current d
-    doublefun1 = @(c) funWater(c)-funYZ(c);
-    doublefun2 = @(d) funYZ(d)-funYZ(d);
-    if y2 > y3
+    doublefun = @(y,z) z./z;
+    if y1 ~= y3 && y2 > y3
         % Case 1: waterline intercepts hull twice
-        vWater = 2;%integral(doublefun1,y1,y3);
+        vWater = integral2(doublefun,y1,y3,funYZ,funWater);
     else
         % Case 2: waterline intercepts deck (y axis)
-        vWater = 1;%integral(doublefun1,y1,y3) - integral(doublefun2,y2,y3);
+        vWater = integral2(doublefun,y1,y2,funYZ,funWater);%integral(funYZ,y2,1);
     end
     
     % Compare vWater againts vDis
-    if abs(vWater-vDis) <= check
+    if abs(vDis-vWater) <= check
+        lastvWater = vWater;
         w = d;
-        check = abs(vWater-vDis);
+        check = abs(vDis-vWater);
     end
     %%
     d = d + step;
@@ -61,5 +64,8 @@ for i=1:length(X)
     W(i) = tan(theta)*X(i) + w;
 end
 Waterline = W;
-res = w
+% some random shit it prints
+depth = w
+thingthatshouldbe0 = check
+lastvWater1 = lastvWater
 end
