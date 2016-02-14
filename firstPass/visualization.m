@@ -16,7 +16,7 @@ end
 %% plot surface of boat
 surf(X,Y,Zboat)
 %% visualizes waterline for given mass and theta
-Zwaterline = waterline(1,pi/4,X); % vector of values for W
+Zwaterline = waterline(.5,pi+.001,X); % vector of values for W
 WaterlinePlane = zeros(length(Zwaterline),length(Zwaterline));
 
 for i=1:length(WaterlinePlane)
