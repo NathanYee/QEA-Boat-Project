@@ -1,0 +1,7 @@
+2/12/16
+Got team set up with git.  Decided to follow solidworks and matlab pipeline.
+
+2/13/16
+First attempt at importing STL's into matlab.  Waterline improved but still needs improvements.  Visualizing waterline created and functions.
+
+
