@@ -1,7 +1,7 @@
-function z_position = globalhull(x,y,params)
+function z_position = globalhull(y)
 %% globalhull returns z_position for a point given a position in the xy plane and a variable paramemter
 %% compute value of z
-z = abs(y)^params + x^2 - 1;
+z = y^10 - 1;
 %% if out of bounds, z=0;
 if z > 0
     z = 0;

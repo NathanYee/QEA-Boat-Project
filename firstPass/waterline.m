@@ -14,7 +14,7 @@ vWater = 0; %volume of water displaced given by d
 d = -.9; %depth of waterline from hull
 %% Function for shape of boat
 %funXZ = 1; %will use this later in 3d version
-funcYZ = @(y) abs(y).^1 - 1;
+funcYZ = @(y) y^10 - 1;
 %% Function for waterline based on d
 funcWater = @(y,d) tan(theta)*y+d;
 %% check things for value of d
@@ -24,8 +24,9 @@ w = 0; % variable to hold correct value of d
 while d <= 0
     % Find intercepts
     %%
-    hullfunc = @(a) funcYZ(a) - funcWater(a,d); % waterline and boat hull
-    y0func = @(b) funcWater(b,d); % waterline and y axis
+    funcWater = @(y) tan(theta)*y+d;
+    hullfunc = @(a) funcYZ(a) - funcWater(a); % waterline and boat hull
+    y0func = @(b) funcWater(b); % waterline and y axis
     y1 = fzero(hullfunc,-1);
     if theta ~= pi && theta ~= 0
         y2 = fzero(y0func,-1);
@@ -33,6 +34,7 @@ while d <= 0
     y3 = fzero(hullfunc,1);
     keyboard
     % Find vWater for current d
+    %%
     doublefunc = @(y,z) z./z; %some shit for integral2
     if theta == pi || theta == 0
         % Weird case #1: theta = pi
@@ -42,13 +44,12 @@ while d <= 0
         vWater = integral2(doublefunc,y1,y3,funcYZ,funcWater);
     else
         %Case 1: waterline intercepts deck (y axis)
-        vWater = integral2(doublefunc,y1,y2,funcYZ,funcWater(d))-integral(funcYZ,y2,1);
+        vWater = integral2(doublefunc,y1,y2,funcYZ,funcWater)-integral(funcYZ,y2,1);
     end
-    
+    %%
     % Compare vWater againts vDis
     if abs(vDis-vWater) <= check
         w = d;
-        lastvwater = vWater;
         check = abs(vDis-vWater);
     end
     %%
