@@ -26,9 +26,12 @@ dumbFunc = @(z,y) z./z; %needs two input arguments because ... matlab
 
 
 keyboard
-if y1 ~= y3 && y2 > y3
+if y2 >= 1
    vWater = integral2(dumbFunc,y1,y3,hullFunc,waterFunc); 
 end
 
+if y2 < 1
+    vWater = integral2(dumbFunc,y1,y2,hullFunc,waterFunc) + integral2(dumbFunc,y2,1,hullFunc,0);
+end
 
 end
