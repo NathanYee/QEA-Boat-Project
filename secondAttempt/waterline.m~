@@ -29,13 +29,10 @@ y3 = fzero(hullIntFunc,1)  %second intersection of hull and waterline
 dumbFunc = @(z,y) z./z; %needs two input arguments because ... matlab
 
 if theta > pi/2
-    if y2 <= -1
-        vWater = integral2(dumbFunc,-1,1,hullFunc,0) - integral2(dumbFunc,y1,y3,hullFunc,waterFunc);
-    end
-    
-    if y2 > -1
-        vWater = integral2(dumbFunc,y2,y3,waterFunc,0) + integral2(dumbFunc,y3,1,hullFunc,0);
-    end
+    if y2 < -1
+        vWater = integral2(dumbFunc,
+
+
 else
     if y2 >= 1
        vWater = integral2(dumbFunc,y1,y3,hullFunc,waterFunc); 
