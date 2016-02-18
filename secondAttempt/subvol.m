@@ -13,7 +13,7 @@ if theta == 0
     y2 = 2;
 end
 
-if theta == pi
+if theta == 180
     y2 = -2;
 end
 
@@ -25,7 +25,7 @@ y3 = fzero(hullIntFunc,1);  %second intersection of hull and waterline
 %% do integrations for different cases of y1, y2, y3
 dumbFunc = @(z,y) z./z; %needs two input arguments because ... matlab
 
-if theta > pi/2
+if theta > 90
     if y2 <= -1
         vWater = integral2(dumbFunc,-1,1,@(y) hullFunc(y,n),0) - integral2(dumbFunc,y1,y3,@(y) hullFunc(y,n),@(y) waterFunc(y,theta,d));
     end
