@@ -1,4 +1,4 @@
-function submergedVolume = subvol(theta,d)
+function vSubmerged = waterline(theta,d)
 % waterline only works for theta's between 0 and pi/2
 %% define constants
 vWater = 0; %volume of water displaced by given value of d
@@ -32,5 +32,5 @@ if y2 < 1
     vWater = integral2(dumbFunc,y1,y2,hullFunc,waterFunc) + integral2(dumbFunc,y2,1,hullFunc,0);
 end
 
-submergedVolume = vWater;
+depth = vWater;
 end
