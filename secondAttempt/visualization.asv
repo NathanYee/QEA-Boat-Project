@@ -1,0 +1,17 @@
+function visualization()
+% define constants
+n = 10;
+mBoat = .5;
+theta = 0;
+d = waterline(mBoat,theta);
+
+% plot boat
+y = linspace(-1,1,100);
+z = abs(y).^n - 1;
+plot(y,z,'k'), hold on
+
+% plot waterline
+z = tand(theta)*y + d;
+plot(y,z,'b'), h
+
+end
