@@ -11,7 +11,6 @@ hullIntFunc = @(y) hullFunc(y) - waterFunc(y); %intersection of hull and waterli
 
 %% find intercepts
 y1 = fzero(hullIntFunc,-1); %first intersection of hull and waterline
-
 if theta == 0
     y2 = 2;
 end
