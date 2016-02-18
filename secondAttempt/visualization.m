@@ -1,9 +1,9 @@
 function visualization()
 clf;
 % define constants
-n = 3;
-mBoat = .5;
-theta = 45;
+n = 10;
+mBoat = .25;
+theta = 170;
 d = waterline(mBoat,theta); %correct depth for given mass
 
 % plot boat
