@@ -3,7 +3,7 @@ clf;
 % define constants
 n = 10;
 mBoat = .25;
-theta = 170;
+theta = 60;
 d = waterline(mBoat,theta); %correct depth for given mass
 
 % plot boat
