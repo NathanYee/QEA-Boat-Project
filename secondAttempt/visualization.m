@@ -1,7 +1,7 @@
 function visualization(n,mBoat)
 clf;
 
-for theta = 0:5:85
+for theta = 100:10:170
 % define constants
 d = waterline(mBoat,theta,n); %correct depth for given mass
 
