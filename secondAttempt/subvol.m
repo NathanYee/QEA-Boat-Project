@@ -1,9 +1,9 @@
-function submergedVolume = subvol(theta,d)
+function submergedVolume = subvol(theta,d,n)
 % waterline only works for theta's between 0 and pi/2
 %% define constants
 vWater = 0; %volume of water displaced by given value of d
 %% define functions for shape of hull and the waterline
-hullFunc = @(y) y.^10 - 1;
+hullFunc = @(y) hull(y,n);
 waterFunc = @(y) tand(theta)*y + d;
 
 %% define equations of intercepts

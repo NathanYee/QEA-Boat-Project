@@ -1,10 +1,10 @@
-function [ycob,zcob] = cob(theta,d)
+function [ycob,zcob] = cob(theta,d,n)
 % waterline only works for theta's between 0 and pi/2
 %% define constants
 ycob = 0;
 zcob = 0;
 %% define functions for shape of hull and the waterline
-hullFunc = @(y) y.^10 - 1;
+hullFunc = @(y) hull(y,n);
 waterFunc = @(y) tand(theta)*y + d;
 
 %% define equations of intercepts
