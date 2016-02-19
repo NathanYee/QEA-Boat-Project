@@ -1,9 +1,8 @@
-function visualization()
+function visualization(n,mBoat)
 clf;
+
+for theta = 0:5:85
 % define constants
-n = 10;
-mBoat = .25;
-theta = 170;
 d = waterline(mBoat,theta); %correct depth for given mass
 
 % plot boat
@@ -15,5 +14,11 @@ axis([-1 1 -1.25 .25])
 % plot waterline
 z = tand(theta)*y + d;
 plot(y,z,'b'), hold on
+
+% plot cob
+[ycob,zcob] = cob(theta,d);
+plot(ycob,zcob,'*r'), hold on
+drawnow
+end
 
 end
