@@ -3,7 +3,7 @@ clf;
 
 for theta = 0:5:85
 % define constants
-d = waterline(mBoat,theta); %correct depth for given mass
+d = waterline(mBoat,theta,n); %correct depth for given mass
 
 % plot boat
 y = linspace(-1,1,100);
@@ -16,7 +16,7 @@ z = tand(theta)*y + d;
 plot(y,z,'b'), hold on
 
 % plot cob
-[ycob,zcob] = cob(theta,d);
+[ycob,zcob] = cob(theta,d,n);
 plot(ycob,zcob,'*r'), hold on
 drawnow
 end
