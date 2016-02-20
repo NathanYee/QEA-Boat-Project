@@ -25,8 +25,7 @@ plot(COM(1),COM(2),'*k'), hold on
 
 % print rightingArm
 rightingArm = rightingArm(theta,d,n);
-
-
+ra_vec = [rightingArm*cos(theta)-COm(1) rightingArm*sin(theta)
 drawnow
 end
 

@@ -1,7 +1,6 @@
-function visualization(n,mBoat)
+function visualization(n,mBoat,theta)
 clf;
 
-for theta = 45:10:45
 % define constants
 d = waterline(mBoat,theta,n); %correct depth for given mass
 
@@ -24,9 +23,11 @@ COM = com();
 plot(COM(1),COM(2),'*k'), hold on
 
 % print rightingArm
-rightingArm = rightingArm(theta,d,n);
-
+ra = rightingArm(theta,d,n);
+ra_y = ra*cosd(theta);
+ra_z = ra*sind(theta)+COM(2);
+plot(ra_y, ra_z,'*g'), hold on
+plot([COM(1) ra_y],[COM(2) ra_z],'g')
 drawnow
-end
 
 end
