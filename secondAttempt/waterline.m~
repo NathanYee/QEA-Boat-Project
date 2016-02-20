@@ -1,6 +1,0 @@
-function res = waterline(mBoat,theta)
-
-    netforce = @(d) subvol(theta,d) - mBoat;
-    
-
-end
