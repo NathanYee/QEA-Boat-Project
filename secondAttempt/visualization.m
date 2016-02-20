@@ -1,5 +1,10 @@
 function visualization()
 clf;
+<<<<<<< HEAD
+=======
+
+for theta = 45:10:45
+>>>>>>> 7a32f182c4c1f121844eea0d68e5ba05602d3f60
 % define constants
 <<<<<<< HEAD
 n = 10;
@@ -23,8 +28,16 @@ plot(y,z,'b'), hold on
 <<<<<<< HEAD
 =======
 % plot cob
-[ycob,zcob] = cob(theta,d,n);
-plot(ycob,zcob,'*r'), hold on
+COB = cob(theta,d,n);
+plot(COB(1),COB(2),'*r'), hold on
+
+% plot com
+COM = com();
+plot(COM(1),COM(2),'*k'), hold on
+
+% print rightingArm
+rightingArm = rightingArm(theta,d,n);
+
 drawnow
 end
 
