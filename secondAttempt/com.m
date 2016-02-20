@@ -1,6 +1,6 @@
-function X = com()
+function X = com(z)
 
 ycom = 0;
-zcom = -.75;
+zcom = z;
 X = [ycom zcom];
 end
