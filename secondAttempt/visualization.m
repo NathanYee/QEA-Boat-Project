@@ -1,11 +1,11 @@
-function visualization(n)
+function visualization(mBoat,n)
 clf;
 % draws boat, waterline, centroids, and righitng arm in figure 1
 % plots avs vs. mboat in figure 2
 
-for mBoat = .3:.1:1.6
+for i = -1:.1:0
     % find AVS for this mass
-    theta = avs(mBoat,n);
+    theta = avs(mBoat,n,i);
     
     % define constants
     d = waterline(mBoat,theta,n); %correct depth for given mass
@@ -25,18 +25,18 @@ for mBoat = .3:.1:1.6
     plot(COB(1),COB(2),'*r'), hold on
     
     % plot com
-    COM = com();
+    COM = com(z)
     plot(COM(1),COM(2),'*k'), hold on
     
     % print rightingArm
-    ra = rightingArm(mBoat,theta,n);
+    ra = rightingArm(mBoat,theta,n,i);
     ra_y = ra*cosd(theta);
     ra_z = ra*sind(theta)+COM(2);
     plot(ra_y, ra_z,'*g'), hold on
     plot([COM(1) ra_y],[COM(2) ra_z],'g')
     
     % plot avs vs mBoat
-    figure(2),plot(mBoat,theta,'*g'), hold on
+    figure(2),plot(i,theta,'*k'), hold on
     drawnow
 end
 end
