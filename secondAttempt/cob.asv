@@ -1,10 +1,10 @@
-function [ycob,zcob] = cob(theta,d)
+function X = cob(theta,d,n)
 % waterline only works for theta's between 0 and pi/2
 %% define constants
 ycob = 0;
 zcob = 0;
 %% define functions for shape of hull and the waterline
-hullFunc = @(y) y.^10 - 1;
+hullFunc = @(y) hull(y,n);
 waterFunc = @(y) tand(theta)*y + d;
 
 %% define equations of intercepts
@@ -38,18 +38,22 @@ if theta > 90
     
     if y2 > -1
         vWater = integral2(dumbFunc,y2,y3,waterFunc,0) + integral2(dumbFunc,y3,1,hullFunc,0);
-        ycob = (integral2(dumbFunc,y2,y3,waterFunc,0) + integral2(dumbFunc,y3,1,hullFunc,0))/vWater;
-        zcob = (integral2(dumbFunc,y2,y3,waterFunc,0) + integral2(dumbFunc,y3,1,hullFunc,0))/vWater;
+        ycob = (integral2(yFunc,y2,y3,waterFunc,0) + integral2(yFunc,y3,1,hullFunc,0))/vWater;
+        zcob = (integral2(zFunc,y2,y3,waterFunc,0) + integral2(zFunc,y3,1,hullFunc,0))/vWater;
     end
 else
     if y2 >= 1
        vWater = integral2(dumbFunc,y1,y3,hullFunc,waterFunc); 
-       ycob = (integral2(dumbFunc,y1,y3,hullFunc,waterFunc))/vWater;
-       zcob = (integral2(dumbFunc,y1,y3,hullFunc,waterFunc))/vWater;
+       ycob = (integral2(yFunc,y1,y3,hullFunc,waterFunc))/vWater;
+       zcob = (integral2(zFunc,y1,y3,hullFunc,waterFunc))/vWater;
     end
 
     if y2 < 1
         vWater = integral2(dumbFunc,y1,y2,hullFunc,waterFunc) + integral2(dumbFunc,y2,1,hullFunc,0);
+        ycob = (integral2(yFunc,y1,y2,hullFunc,waterFunc) + integral2(yFunc,y2,1,hullFunc,0))/vWater;
+        zcob = (integral2(zFunc,y1,y2,hullFunc,waterFunc) + integral2(zFunc,y2,1,hullFunc,0))/vWater;
     end
 end
+
+X = [ycob zcob]
 end

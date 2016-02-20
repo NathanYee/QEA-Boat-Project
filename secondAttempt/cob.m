@@ -1,4 +1,4 @@
-function [ycob,zcob] = cob(theta,d,n)
+function X = cob(theta,d,n)
 % waterline only works for theta's between 0 and pi/2
 %% define constants
 ycob = 0;
@@ -54,4 +54,6 @@ else
         zcob = (integral2(zFunc,y1,y2,hullFunc,waterFunc) + integral2(zFunc,y2,1,hullFunc,0))/vWater;
     end
 end
+
+X = [ycob zcob];
 end
