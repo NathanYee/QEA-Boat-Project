@@ -1,0 +1,5 @@
+function res = avs(mBoat,n)
+%avs 
+res = fzero(@(theta) rightingArm(mBoat,theta,n), 115)
+
+end
