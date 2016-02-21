@@ -1,3 +1,3 @@
 function res = hull(y,n)
-    res =  y.^n - 1;
+    res =  2*y.^n - 2;
 end

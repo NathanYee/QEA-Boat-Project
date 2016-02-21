@@ -1,12 +1,13 @@
 %real life dimensions
-d = -.8; %d is the depth for the waterline
-n = 2; %degree of polynomial
+d = -1.5; %d is the depth for the waterline
+n = 4; %degree of polynomial
 
 mast = 92
 cans = 389.5
+ballast = 300
 
 
-mass = 1150
+mass = mast + 2*cans + ballast
 scale = 5
 theta = 0; %angle of waterline
 crossArea = subvol(theta,d,n)
@@ -14,6 +15,5 @@ dimCrossArea = crossArea * 2.54^2 * scale^2
 length = mass/dimCrossArea
 
 %calculate com
-z = (92*(25-scale*2.54) - 750*4.5 - 300*(scale+1)*2.54) / (mass * scale * 2.54)
-
+z = (mast*(25-scale*2.54) - 2*cans*9 - ballast*(scale+1)*2.54) / (mass * scale * 2.54)
 AVS = avs(crossArea,n,z)
