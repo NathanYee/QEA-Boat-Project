@@ -1,6 +1,0 @@
-function X = com(i)
-
-ycom = 0
-zcom = i
-X = [ycom zcom];
-end
