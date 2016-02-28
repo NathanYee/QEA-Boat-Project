@@ -19,10 +19,7 @@ end
 thetas = [thetas1, thetas2]
 moments = [moments1, moments2]
 
-plot(thetas, moments), hold on
+plot(thetas, moments)
 xlabel('Angle (degrees)')
 ylabel('Moment N*m')
 
-x = linspace(0,180,10)
-y = 0*x + 0
-plot(x,y)
